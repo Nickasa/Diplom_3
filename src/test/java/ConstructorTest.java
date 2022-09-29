@@ -30,17 +30,12 @@ public class ConstructorTest {
     @DisplayName("Select sauces")
     public void transitionToSauces() {
         HomePageBurgers homePageBurgers = new HomePageBurgers(driver);
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.invisibilityOfElementLocated(homePageBurgers.getLoader()));
-
         homePageBurgers.clickSaucesButton();
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(homePageBurgers.getSaucesSelectedButton()));
-
         Assert.assertTrue("Sauces button is not selected", homePageBurgers.isSaucesButtonSelected());
-
     }
 
     //Тест на выбор списка начинок. В Firefox не проходит, перескакивает с начинок на соусы, не могу понять почему, если можно комментарий, пожалуйста
@@ -48,17 +43,12 @@ public class ConstructorTest {
     @DisplayName("Select fillings")
     public void transitionToFillings() {
         HomePageBurgers homePageBurgers = new HomePageBurgers(driver);
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.invisibilityOfElementLocated(homePageBurgers.getLoader()));
-
         homePageBurgers.clickFillingsButton();
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(homePageBurgers.getFillingsSelectedButton()));
-
         Assert.assertTrue("Fillings button is not selected", homePageBurgers.isFillingsButtonSelected());
-
     }
 
     //Тест на выбор списка булок, так как они выбраны по умолчанию - переходит а другой список и обратно
@@ -66,19 +56,13 @@ public class ConstructorTest {
     @DisplayName("Select fillings then buns")
     public void transitionFromFillingsToBuns() {
         HomePageBurgers homePageBurgers = new HomePageBurgers(driver);
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.invisibilityOfElementLocated(homePageBurgers.getLoader()));
-
         homePageBurgers.clickFillingsButton();
-
         homePageBurgers.clickBunsButton();
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(homePageBurgers.getBunsSelectedButton()));
-
         Assert.assertTrue("Fillings button is not selected", homePageBurgers.isBunsButtonSelected());
-
     }
 }
 

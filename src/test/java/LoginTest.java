@@ -27,15 +27,10 @@ public class LoginTest {
         this.driver = driver;
         driver.get("https://stellarburgers.nomoreparties.site/");
         userClient = new UserClient();
-
         user = UserGenerator.getDefault();
-
         ValidatableResponse response = userClient.create(user);
-
         String rawToken = response.extract().path("accessToken");
-
         token = rawToken.replaceFirst("Bearer ", "");
-
     }
 
     @After
@@ -49,21 +44,14 @@ public class LoginTest {
     @DisplayName("Login with login button")
     public void loginWithLoginButton() {
         HomePageBurgers homePageBurgers = new HomePageBurgers(driver);
-
         homePageBurgers.waitUntilHomePageIsLoaded();
         homePageBurgers.clickLoginButton();
-
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.enterEmail(user.getEmail());
-
         loginPage.enterPassword(user.getPassword());
-
         loginPage.clickLoginButton();
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(homePageBurgers.getCreateOrderButton()));
-
         Assert.assertTrue("Create order button is not Visible", homePageBurgers.createOrderButtonIsVisible());
     }
 
@@ -72,21 +60,14 @@ public class LoginTest {
     @DisplayName("Login with account button")
     public void loginWithAccountButton() {
         HomePageBurgers homePageBurgers = new HomePageBurgers(driver);
-
         homePageBurgers.waitUntilHomePageIsLoaded();
         homePageBurgers.clickAccountButton();
-
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.enterEmail(user.getEmail());
-
         loginPage.enterPassword(user.getPassword());
-
         loginPage.clickLoginButton();
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(homePageBurgers.getCreateOrderButton()));
-
         Assert.assertTrue("Create order button is not Visible", homePageBurgers.createOrderButtonIsVisible());
     }
 
@@ -94,27 +75,17 @@ public class LoginTest {
     @DisplayName("Login with registration button")
     public void loginWithRegistrationButton() {
         HomePageBurgers homePageBurgers = new HomePageBurgers(driver);
-
         homePageBurgers.waitUntilHomePageIsLoaded();
         homePageBurgers.clickLoginButton();
-
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.clickRegisterButton();
-
         RegisterPage registerPage = new RegisterPage(driver);
-
         registerPage.clickLoginLink();
-
         loginPage.enterEmail(user.getEmail());
-
         loginPage.enterPassword(user.getPassword());
-
         loginPage.clickLoginButton();
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(homePageBurgers.getCreateOrderButton()));
-
         Assert.assertTrue("Create order button is not Visible", homePageBurgers.createOrderButtonIsVisible());
     }
 
@@ -122,27 +93,17 @@ public class LoginTest {
     @DisplayName("Login with recover password button")
     public void loginWithForgotPasswordButton() {
         HomePageBurgers homePageBurgers = new HomePageBurgers(driver);
-
         homePageBurgers.waitUntilHomePageIsLoaded();
         homePageBurgers.clickLoginButton();
-
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.clickPasswordRecoverLink();
-
         ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage(driver);
-
         forgotPasswordPage.clickLoginLink();
-
         loginPage.enterEmail(user.getEmail());
-
         loginPage.enterPassword(user.getPassword());
-
         loginPage.clickLoginButton();
-
         new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(homePageBurgers.getCreateOrderButton()));
-
         Assert.assertTrue("Create order button is not Visible", homePageBurgers.createOrderButtonIsVisible());
     }
 
